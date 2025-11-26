@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -34,11 +35,11 @@ jobs:
             echo "EXPO_TOKEN found"
           fi
 
-      - name: Build APK
+      - name: Build APK (development profile)
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: |
-          eas build --platform android --profile apk --non-interactive --no-wait
+          eas build --platform android --profile development --non-interactive --no-wait
           
       - name: Output Expo Build Info
         run: echo "✅ Check your build at https://expo.dev/accounts"
