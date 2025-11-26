@@ -1,0 +1,44 @@
+name: Build Android APK Fixed
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./  # asegura que instale desde la raíz
+
+      - name: Verify Expo Token
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "ERROR: EXPO_TOKEN is missing!"
+            exit 1
+          else
+            echo "EXPO_TOKEN found"
+          fi
+
+      - name: Build APK
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          eas build --platform android --profile apk --non-interactive --no-wait
+          
+      - name: Output Expo Build Info
+        run: echo "✅ Check your build at https://expo.dev/accounts"
