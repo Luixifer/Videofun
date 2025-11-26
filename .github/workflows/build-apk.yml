@@ -1,0 +1,42 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Configure EAS
+        run: |
+          echo "eas: {
+            projectId: 'local'
+          }" > eas.json
+
+      - name: Build APK with EAS
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          eas build --platform android --profile apk --non-interactive --no-wait
+          echo "EAS BUILD STARTED. YOU MUST CHECK THE URL BELOW."
+
+      - name: Output EAS Build URL
+        run: |
+          echo "🔗 Ve a https://expo.dev/accounts para ver tu build en progreso"
