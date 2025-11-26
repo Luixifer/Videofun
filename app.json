@@ -11,7 +11,7 @@
       "backgroundColor": "#000000"
     },
     "android": {
-      "package": "com.luissanzbernal.tiktokclone",
+      "package": "com.luissanzbernal.videofun",
       "permissions": [
         "CAMERA",
         "RECORD_AUDIO",
