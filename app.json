@@ -3,25 +3,6 @@
     "name": "TikTokClone",
     "slug": "videofun",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#000000"
-    },
-    "android": {
-      "package": "com.luissanzbernal.videofun",
-      "permissions": [
-        "CAMERA",
-        "RECORD_AUDIO",
-        "WRITE_EXTERNAL_STORAGE",
-        "READ_EXTERNAL_STORAGE"
-      ]
-    },
-    "plugins": [
-      "expo-camera"
-    ],
     "extra": {
       "eas": {
         "projectId": "5dd8466c-9bb2-4e59-a4db-1261aedec034"
