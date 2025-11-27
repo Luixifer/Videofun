@@ -43,8 +43,4 @@ jobs:
           
       - name: Output Expo Build Info
         run: echo "✅ Check your build at https://expo.dev/accounts"
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-apk
-          path: path/to/your/app.apk
+      
